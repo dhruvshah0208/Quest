@@ -1,6 +1,22 @@
 #include<stdio.h>
 typedef struct Vec Vec;
 typedef struct Matrix_3 Matrix_3;
+
+void Vec_construct(Vec *this, double x,double y,double z);
+void cross(Vec* this,Vec* vec1,Vec* vec2);
+double dot(Vec* vec1,Vec* vec2);
+void scale_vec(Vec *this,double k);
+void add_vec(Vec *this,Vec* vec1,Vec* vec2);
+void matrix_construct(Matrix_3 *this,unsigned char x);
+void add_matrix(Matrix_3 *this,Matrix_3 *m1,Matrix_3 *m2);
+void scale_matrix(Matrix_3 *this,Matrix_3 *M,double k); // This modifies the input matrix
+double det(Matrix_3 *this);
+double trace(Matrix_3 *this);
+void T(Matrix_3 *this,Matrix_3 *m1);
+void adjoint(Matrix_3 *this,Matrix_3* m);
+void outer_product(Matrix_3* this,Vec* v1,Vec* v2);
+void matmul(Vec* this,Matrix_3* M,Vec *v);
+
 struct Vec{
   double x,y,z;
 };
@@ -57,10 +73,10 @@ void add_matrix(Matrix_3 *this,Matrix_3 *m1,Matrix_3 *m2){
   }
 }
 
-void scale_matrix(Matrix_3 *this,double k){ // This modifies the input matrix
+void scale_matrix(Matrix_3 *this,Matrix_3 *M,double k){
   for (unsigned char i = 0; i < 3; i++) {
     for (unsigned char j = 0; j < 3; j++) {
-        this->elements[i][j] = (this->elements[i][j])*k;
+        this->elements[i][j] = (M->elements[i][j])*k;
     }
   }
 }
@@ -107,11 +123,4 @@ void matmul(Vec* this,Matrix_3* M,Vec *v){
   this->x = M->elements[0][0]*v->x + M->elements[0][1]*v->y + M->elements[0][2]*v->z;
   this->y = M->elements[1][0]*v->x + M->elements[1][1]*v->y + M->elements[1][2]*v->z;
   this->z = M->elements[2][0]*v->x + M->elements[2][1]*v->y + M->elements[2][2]*v->z;
-}
-int main(){
-  Matrix_3 a,b;
-  matrix_construct(&a,0);
-  matrix_construct(&b,1);
-  T(&a,&b);
-  printf("%lf\n",a.elements[0][1]);
 }
