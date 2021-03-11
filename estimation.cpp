@@ -3,8 +3,6 @@
 using namespace std;
 #include <cmath>
 
-
-
 int main(){
   // INPUT FORMAT is a_i,b_i,r_i
   int N ;  // #REVISIT - No of stars
@@ -116,7 +114,6 @@ int main(){
     q_4 = new_4;
 
   }
-  cout << " Counter :" << counter << endl;
   cout << q_3.x/alpha << endl;
   cout << q_3.y/alpha << endl;
   cout << q_3.z/alpha << endl;
