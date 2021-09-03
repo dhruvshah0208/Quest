@@ -40,12 +40,12 @@ void quest(double **data)
 	
 	
 	// Perform Quest
-	double f(double x){
+	double f(double x){ // This is the function whose roots are found using Newton Rapshon 
 		double first = (x*x - trace_B*trace_B + K)*(x*x - trace_B*trace_B - norm_2_z);
 		double second = (x - trace_B)*(zTSz + det_S);
 		return (first - second - zTSSz);
 	}
-	double f_bar(double x){
+	double f_bar(double x){//This is the derivative of the function whose roots are found using Newton Rapshon 
 		double temp = 2*x*(2*x*x - 2*trace_B*trace_B + K - norm_2_z);
 		return (temp - zTSz - det_S);
 	}
